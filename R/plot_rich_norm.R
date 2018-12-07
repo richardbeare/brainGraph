@@ -56,7 +56,7 @@ plot_rich_norm <- function(rich.dt, facet.by=c('density', 'threshold'),
     densities.g <- round(vapply(g[[1]], graph_attr, numeric(1), 'density'), 2)
     densities.g <- which(densities.g %in% round(densities, 2))
     g <- lapply(g, `[`, densities.g)
-    k <- vapply(g, vapply, integer(length(densities)), function(x) rich_core(x)$k.r, integer(1))
+    k <- vapply(g, vapply, integer(length(densities)), function(x) as.integer(rich_core(x)$k.r), integer(1))
     max.k <- apply(as.matrix(k), 1, max)
 
     rects[, xstart := max.k]

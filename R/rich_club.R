@@ -256,8 +256,8 @@ rich_club_attrs <- function(g, deg.range=NULL, adj.vsize=FALSE) {
 rich_core <- function(g, weighted=FALSE) {
   stopifnot(is_igraph(g))
   if (isTRUE(weighted)) {
-    A <- as_adj(g, names=FALSE, attr='weight')
-    w_min <- min(summary(A)$x)
+    A <- as_adj(g, names=FALSE, attr='weight', sparse=FALSE)
+    w_min <- min(E(g)$weight)
     A <- ceiling(A / w_min)
   } else {
     A <- as_adj(g, names=FALSE, sparse=FALSE)
